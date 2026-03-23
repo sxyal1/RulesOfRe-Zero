@@ -312,3 +312,37 @@ hr {
         margin-left: 20px;
     }
 }
+/* Стили кнопки */
+.theme-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  background-color: #222;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+/* Светлая тема по умолчанию, когда checkbox отмечен */
+#themeToggle:checked ~ body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Меняем стиль кнопки при светлой теме */
+#themeToggle:checked ~ .theme-button {
+  background-color: #ddd;
+  color: #000;
+}
+
+/* Темная тема по умолчанию */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
