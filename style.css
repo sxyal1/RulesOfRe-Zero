@@ -343,21 +343,30 @@ hr {
   transition: all 0.3s ease;
 }
 
-/* Темная тема (по умолчанию) */
-#site {
-  background-color: #121212;
-  color: #ffffff;
-  transition: all 0.3s ease;
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
 }
 
-/* Светлая тема при нажатой кнопке */
-#themeToggle:checked + .theme-button + #site {
-  background-color: #ffffff;
-  color: #000000;
+.theme-toggle-btn {
+    background: #2a2f3b;
+    border: none;
+    color: #e5e5e5;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    border: 1px solid #3d424f;
 }
 
-/* Меняем стиль кнопки при светлой теме */
-#themeToggle:checked + .theme-button {
-  background-color: #ddd;
-  color: #000;
+.theme-toggle-btn:hover {
+    background: #c52b3a;
+    color: white;
+    border-color: #c52b3a;
 }
