@@ -10,6 +10,7 @@ body {
     color: #e5e5e5;
     line-height: 1.6;
     padding: 20px;
+    transition: background 0.3s, color 0.2s;
 }
 
 .container {
@@ -20,6 +21,7 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #2a2f3a inset;
     overflow: hidden;
     padding: 40px 35px;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 /* Header */
@@ -31,6 +33,7 @@ body {
     border-bottom: 2px solid #9b1d2c;
     padding-bottom: 25px;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .clan-icon {
@@ -73,6 +76,35 @@ body {
 
 .clan-title p i {
     color: #c52b3a;
+}
+
+/* Кнопка переключения темы */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn {
+    background: #2a2f3b;
+    border: none;
+    color: #e5e5e5;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    border: 1px solid #3d424f;
+}
+
+.theme-toggle-btn:hover {
+    background: #c52b3a;
+    color: white;
+    border-color: #c52b3a;
 }
 
 /* TOC */
@@ -149,17 +181,6 @@ body {
     font-size: 2rem;
     font-weight: 700;
     color: #f0e6d2;
-}
-
-.section-header h2 span {
-    font-size: 1rem;
-    background: #2a2f3b;
-    padding: 4px 12px;
-    border-radius: 30px;
-    margin-left: 15px;
-    font-weight: 400;
-    color: #b9c2d4;
-    vertical-align: middle;
 }
 
 /* Rules list */
@@ -290,6 +311,134 @@ hr {
     margin-top: 20px;
 }
 
+/* ========== СВЕТЛАЯ ТЕМА ========== */
+body.light-theme {
+    background: #eef2f7;
+    color: #1e2a3a;
+}
+
+body.light-theme .container {
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px #d0d7e0 inset;
+}
+
+body.light-theme .clan-icon {
+    background: #f0f2f5;
+    border-color: #c52b3a;
+    box-shadow: 0 0 12px rgba(197, 43, 58, 0.3);
+}
+
+body.light-theme .clan-title p {
+    color: #4b5b6c;
+}
+
+body.light-theme .theme-toggle-btn {
+    background: #e9ecef;
+    color: #1e2a3a;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .theme-toggle-btn:hover {
+    background: #c52b3a;
+    color: white;
+}
+
+body.light-theme .toc {
+    background: #f8fafc;
+    border-left-color: #c52b3a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+body.light-theme .toc h2 {
+    color: #2c3e50;
+}
+
+body.light-theme .toc-grid a {
+    background: #eef2f5;
+    color: #2c3e50;
+    border-color: #dce3ec;
+}
+
+body.light-theme .toc-grid a:hover {
+    background: #c52b3a;
+    color: white;
+}
+
+body.light-theme .section-header {
+    border-bottom-color: #e2e8f0;
+}
+
+body.light-theme .section-icon {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #c52b3a;
+}
+
+body.light-theme .section-header h2 {
+    color: #2c3e50;
+}
+
+body.light-theme .rule-item {
+    background: #f9fafb;
+    border-left-color: #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+body.light-theme .rule-item:hover {
+    background: #ffffff;
+    border-left-color: #c52b3a;
+}
+
+body.light-theme .rule-text {
+    color: #1e2a3a;
+}
+
+body.light-theme .punishment {
+    background: #f1f5f9;
+    border-left-color: #c52b3a;
+    color: #334155;
+}
+
+body.light-theme .punishment i {
+    color: #c52b3a;
+}
+
+body.light-theme .punishment strong {
+    color: #b91c2c;
+}
+
+body.light-theme .edited-note {
+    background: #eef2ff;
+    color: #4b5563;
+}
+
+body.light-theme .expiration-box {
+    background: #f9fafb;
+    border-color: #cbd5e1;
+}
+
+body.light-theme .exp-item {
+    background: #ffffff;
+    border-top-color: #c52b3a;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+body.light-theme .exp-item h3 {
+    color: #2c3e50;
+}
+
+body.light-theme .exp-item p {
+    color: #4b5563;
+}
+
+body.light-theme hr {
+    background: linear-gradient(90deg, #e2e8f0, #c52b3a, #e2e8f0);
+}
+
+body.light-theme .footer-note {
+    color: #94a3b8;
+}
+
 /* responsive */
 @media (max-width: 600px) {
     .container {
@@ -311,62 +460,4 @@ hr {
     .sub-rule {
         margin-left: 20px;
     }
-}
-/* Стили кнопки */
-.theme-button {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 8px 12px;
-  background-color: #222;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-/* Стили кнопки */
-.theme-button {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 8px 12px;
-  background-color: #222;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.theme-toggle-btn {
-    background: #2a2f3b;
-    border: none;
-    color: #e5e5e5;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 8px 18px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: inherit;
-    border: 1px solid #3d424f;
-}
-
-.theme-toggle-btn:hover {
-    background: #c52b3a;
-    color: white;
-    border-color: #c52b3a;
 }
