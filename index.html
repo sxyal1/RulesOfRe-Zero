@@ -27,14 +27,13 @@
             </div>
         </div>
 
-        <!-- Оглавление (навигация) -->
-        <nav class="toc" aria-labelledby="toc-heading">
-            <h2 id="toc-heading"><i class="fas fa-scroll" aria-hidden="true"></i> Содержание</h2>
+        <!-- Закреплённая панель навигации (без заголовка, горизонтальные ссылки) -->
+        <nav class="toc" aria-label="Навигация по правилам">
             <div class="toc-grid">
-                <a href="#section1"><i class="fas fa-users" aria-hidden="true"></i> 1. Общие правила</a>
-                <a href="#section2"><i class="fas fa-ban" aria-hidden="true"></i> 2. Поведение и токсичность</a>
-                <a href="#section3"><i class="fas fa-image" aria-hidden="true"></i> 3. Контент и материалы</a>
-                <a href="#section4"><i class="fas fa-gamepad" aria-hidden="true"></i> 4. Игровые правила</a>
+                <a href="#section1"><i class="fas fa-users" aria-hidden="true"></i> 1. Общие</a>
+                <a href="#section2"><i class="fas fa-ban" aria-hidden="true"></i> 2. Токсичность</a>
+                <a href="#section3"><i class="fas fa-image" aria-hidden="true"></i> 3. Контент</a>
+                <a href="#section4"><i class="fas fa-gamepad" aria-hidden="true"></i> 4. Игровые</a>
                 <a href="#section5"><i class="fas fa-shield-alt" aria-hidden="true"></i> 5. Модерация</a>
                 <a href="#section6"><i class="fas fa-clock" aria-hidden="true"></i> 6. Активность</a>
                 <a href="#section7"><i class="fas fa-eye" aria-hidden="true"></i> 7. Смотрящий</a>
@@ -43,7 +42,7 @@
                 <a href="#section10"><i class="fa fa-user-secret" aria-hidden="true"></i> 10. Мошенничество</a>
                 <a href="#section11"><i class="fa fa-chain-broken" aria-hidden="true"></i> 11. Обход наказаний</a>
                 <a href="#expiration"><i class="fas fa-history" aria-hidden="true"></i> Сроки погашения</a>
-                <a href="#Moder"><i class="fas fa-history" aria-hidden="true"></i> Обязоности</a>
+                <a href="#Moder"><i class="fas fa-crown" aria-hidden="true"></i> Обязанности</a>
             </div>
         </nav>
 
@@ -151,7 +150,9 @@
                     <li class="rule-item"><span class="rule-number">7.4</span> <span class="rule-text">Смотрящий обязан выполнять свои функции серьёзно, поддерживать порядок и не мешать работе модераторов. Запрещено дурачиться, провоцировать конфликты или препятствовать модераторам.</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> предупреждение → временное отстранение → лишение прав Смотрящего.</div></li>
                 </ul>
             </section>
-                 <section id="section9" class="rule-section">
+
+            <!-- Раздел 8. Политика -->
+            <section id="section8" class="rule-section">
                 <div class="section-header">
                     <div class="section-icon" aria-hidden="true"><i class="fas fa-gavel"></i></div>
                     <h2>Раздел 8. Политика на сервере</h2>
@@ -163,9 +164,8 @@
                     <li class="rule-item"><span class="rule-number">8.4</span> <span class="rule-text">Запрещено использовать политические темы в никах, статусах или сообщениях для провокации.</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> предупреждение → смена ника → временный бан. <span class="edited-note"><i class="fas fa-pen" aria-hidden="true"></i></span></div></li>
                 </ul>
             </section>
-        </main>
 
-            <!-- Раздел 9. Трейды-->
+            <!-- Раздел 9. Трейды -->
             <section id="section9" class="rule-section">
                 <div class="section-header">
                     <div class="section-icon" aria-hidden="true"><i class="fa fa-exchange"></i></div>
@@ -175,10 +175,11 @@
                     <li class="rule-item"><span class="rule-number">9.1</span> <span class="rule-text">Запрещены обманные трейды (введение в заблуждение, скрытые условия, подмена договорённостей).</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> предупреждение → временный бан → повторное нарушение — длительный бан.</div></li>
                     <li class="rule-item"><span class="rule-number">9.2</span> <span class="rule-text">Запрещён спам предложениями трейдов в чатах и личных сообщениях.</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> предупреждение → Таймут → временный бан.</div></li>
                     <li class="rule-item"><span class="rule-number">9.3</span> <span class="rule-text">Все трейды совершаются на свой риск администрация и модерация не несут ответственности за потерю предметов.</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> 1 час → 1 день → 1 неделя.<span class="edited-note"><i class="fas fa-pen" aria-hidden="true"></i></span></div></li> 
-                       </ul>
+                </ul>
             </section>
-        </main>
-        <section id="section10" class="rule-section">
+
+            <!-- Раздел 10. Мошенничество -->
+            <section id="section10" class="rule-section">
                 <div class="section-header">
                     <div class="section-icon" aria-hidden="true"><i class="fa fa-user-secret"></i></div>
                     <h2>Раздел 10. Мошенничество</h2>
@@ -189,8 +190,9 @@
                     <li class="rule-item"><span class="rule-number">10.3</span> <span class="rule-text">Запрещено запрашивать у игроков личные данные, пароли или доступ к аккаунтам.</span> <div class="punishment"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <strong>Наказание:</strong> перманентный бан.<span class="edited-note"><i class="fas fa-pen" aria-hidden="true"></i></span></div></li>
                 </ul>
             </section>
-        </main>
-        <section id="section11" class="rule-section">
+
+            <!-- Раздел 11. Обход наказаний -->
+            <section id="section11" class="rule-section">
                 <div class="section-header">
                     <div class="section-icon" aria-hidden="true"><i class="fa fa-chain-broken"></i></div>
                     <h2>Раздел 11. Обход наказаний</h2>
@@ -202,6 +204,7 @@
                 </ul>
             </section>
         </main>
+
         <!-- Сроки погашения нарушений -->
         <hr>
         <div id="expiration" class="expiration-box">
@@ -218,6 +221,8 @@
         <div class="footer-note" aria-hidden="true">
             <i class="fas fa-skull"></i>
         </div>
+
+        <!-- Обязанности модераторов и смотрящего -->
         <section id="Moder" class="rule-section">
             <div class="rule-item">
                 <h3><i class="fas fa-crown" aria-hidden="true"></i> Обязанности модераторов</h3>
@@ -246,9 +251,6 @@
                 <p>Помогать улучшать работу модерации и предлагать изменения.</p>
                 <p>Сохранять конфиденциальность служебной информации.</p>
             </div>
-            <div class="footer-note" aria-hidden="true">
-                <i class="fas fa-skull"></i>
-            </div>
         </section>
     </div>
 
@@ -257,7 +259,6 @@
             const themeToggleBtn = document.getElementById('theme-toggle');
             const body = document.body;
 
-            // Проверяем сохранённую тему
             const savedTheme = localStorage.getItem('rezero-theme');
             if (savedTheme === 'light') {
                 body.classList.add('light-theme');
@@ -279,3 +280,5 @@
             });
         })();
     </script>
+</body>
+</html>
