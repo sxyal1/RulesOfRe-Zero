@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background: #0b0c10;
     font-family: 'Inter', sans-serif;
@@ -23,7 +19,7 @@ body {
     background: #15181e;
     border-radius: 32px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #2a2f3a inset;
-    /* overflow: hidden; — УБРАНО ДЛЯ РАБОТЫ STICKY */
+    overflow: hidden;
     padding: 40px 35px;
     transition: background 0.3s, box-shadow 0.3s;
 }
@@ -111,35 +107,25 @@ body {
     border-color: #c52b3a;
 }
 
-/* TOC — компактное горизонтальное меню, закреплённое сверху */
+/* Закреплённая панель навигации */
 .toc {
-    background: #1e222b;
-    border-radius: 24px;
-    padding: 12px 20px;
-    margin-bottom: 40px;
-    border-bottom: 2px solid #c52b3a;
     position: sticky;
     top: 20px;
-    z-index: 10;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
+    z-index: 100;
+    background: #1e222b;
+    border-radius: 60px;
+    padding: 12px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
-.toc h2 {
-    font-size: 1.2rem;
-    margin: 0;
-    color: #ffe4d6;
-    font-weight: 600;
-}
-
+/* Горизонтальное меню ссылок */
 .toc-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    flex: 1;
+    justify-content: center;
+    gap: 8px;
 }
 
 .toc-grid a {
@@ -161,10 +147,10 @@ body {
     border-color: #c52b3a;
 }
 
-/* Sections */
+/* Отступ для заголовков разделов, чтобы панель не перекрывала их при прокрутке */
 .rule-section {
     margin-bottom: 45px;
-    scroll-margin-top: 100px; /* чтобы заголовок не прятался за меню */
+    scroll-margin-top: 100px;
 }
 
 .section-header {
@@ -357,12 +343,7 @@ body.light-theme .theme-toggle-btn:hover {
 
 body.light-theme .toc {
     background: #f8fafc;
-    border-bottom-color: #c52b3a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-body.light-theme .toc h2 {
-    color: #2c3e50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 body.light-theme .toc-grid a {
@@ -452,7 +433,7 @@ body.light-theme .footer-note {
 }
 
 /* responsive */
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     .container {
         padding: 25px 18px;
     }
@@ -473,22 +454,13 @@ body.light-theme .footer-note {
         margin-left: 20px;
     }
     .toc {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 15px;
-    }
-    .toc h2 {
-        font-size: 1.1rem;
-    }
-    .toc-grid {
-        width: 100%;
-        gap: 8px;
+        top: 10px;
+        border-radius: 40px;
+        padding: 10px 12px;
     }
     .toc-grid a {
-        padding: 4px 12px;
         font-size: 0.8rem;
+        padding: 4px 12px;
         white-space: normal;
-        text-align: center;
     }
 }
