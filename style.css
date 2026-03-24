@@ -1,3 +1,4 @@
+/* ========== RESET & GLOBAL ========== */
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +6,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* плавная прокрутка */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -17,13 +18,14 @@ body {
     transition: background 0.3s, color 0.2s;
 }
 
+/* Container - убран overflow:hidden, чтобы sticky работал */
 .container {
     max-width: 1000px;
     margin: 0 auto;
     background: #15181e;
     border-radius: 32px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px #2a2f3a inset;
-    /* overflow: hidden; — УБРАЛИ, иначе sticky не работает */
+    /* overflow: hidden; УДАЛЕНО */
     padding: 40px 35px;
     transition: background 0.3s, box-shadow 0.3s;
 }
@@ -119,7 +121,7 @@ body {
     margin-bottom: 40px;
     border-left: 6px solid #c52b3a;
     position: sticky;
-    top: 20px;          /* отступ от верха окна */
+    top: 20px;
     z-index: 10;
 }
 
@@ -159,7 +161,7 @@ body {
 /* Sections */
 .rule-section {
     margin-bottom: 45px;
-    scroll-margin-top: 100px; /* чтобы заголовок не прятался за прилипшим меню */
+    scroll-margin-top: 100px; /* отступ для якорей, чтобы не перекрывалось панелью */
 }
 
 .section-header {
