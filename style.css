@@ -28,7 +28,7 @@ body {
     position: fixed;
     left: 0;
     top: 50%;
-    transform: translateY(calc(-50% + 20px)); /* сдвиг вниз на 20px */
+    transform: translateY(calc(-50% + 20px));
     width: 70px;
     height: auto;
     background: rgba(30, 34, 43, 0.95);
@@ -230,6 +230,17 @@ body {
     animation-delay: 0.5s;
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .clan-title p i {
     color: #c52b3a;
 }
@@ -311,11 +322,6 @@ body {
     animation: fadeSlideUp 0.5s forwards;
 }
 
-.rule-item:hover {
-    border-left-color: #c52b3a;
-    background: #1f232d;
-}
-
 @keyframes fadeSlideUp {
     0% {
         opacity: 0;
@@ -327,19 +333,10 @@ body {
     }
 }
 
-/* Задержки для пунктов правил (до 12, можно больше) */
-.rule-item:nth-child(1) { animation-delay: 0.05s; }
-.rule-item:nth-child(2) { animation-delay: 0.1s; }
-.rule-item:nth-child(3) { animation-delay: 0.15s; }
-.rule-item:nth-child(4) { animation-delay: 0.2s; }
-.rule-item:nth-child(5) { animation-delay: 0.25s; }
-.rule-item:nth-child(6) { animation-delay: 0.3s; }
-.rule-item:nth-child(7) { animation-delay: 0.35s; }
-.rule-item:nth-child(8) { animation-delay: 0.4s; }
-.rule-item:nth-child(9) { animation-delay: 0.45s; }
-.rule-item:nth-child(10) { animation-delay: 0.5s; }
-.rule-item:nth-child(11) { animation-delay: 0.55s; }
-.rule-item:nth-child(12) { animation-delay: 0.6s; }
+.rule-item:hover {
+    border-left-color: #c52b3a;
+    background: #1f232d;
+}
 
 .rule-number {
     font-weight: 700;
