@@ -14,15 +14,23 @@ body {
     line-height: 1.6;
     transition: background 0.3s, color 0.2s;
     padding-left: 80px;
+    /* плавное появление всей страницы */
+    animation: bodyFadeIn 0.6s ease-out forwards;
 }
 
-/* ========== БОКОВАЯ ПАНЕЛЬ (закреплена, с отступами) ========== */
+@keyframes bodyFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ========== БОКОВАЯ ПАНЕЛЬ — ЗАКРЕПЛЕНА, ПО ЦЕНТРУ ========== */
 .side-nav {
     position: fixed;
     left: 0;
-    top: 20px;
-    bottom: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 70px;
+    height: auto;
     background: rgba(30, 34, 43, 0.95);
     backdrop-filter: blur(8px);
     border-right: 1px solid #2a2f3a;
@@ -35,6 +43,18 @@ body {
     border-radius: 0 20px 20px 0;
     padding: 0;
     margin: 0;
+    animation: slideInLeft 0.5s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
 }
 
 .side-nav:hover {
@@ -43,7 +63,7 @@ body {
 
 .side-nav ul {
     list-style: none;
-    padding: 0;
+    padding: 16px 0;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -91,7 +111,7 @@ body {
     border-left: 3px solid #c52b3a;
 }
 
-/* Контейнер — без изменений */
+/* Контейнер — появление с задержкой */
 .container {
     max-width: 1000px;
     margin: 20px auto 20px auto;
@@ -101,8 +121,23 @@ body {
     overflow: hidden;
     padding: 40px 35px;
     transition: background 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Анимация иконки клана */
 .clan-icon {
     background: #1e2128;
     border-radius: 50%;
@@ -116,8 +151,24 @@ body {
     color: #c52b3a;
     border: 3px solid #c52b3a;
     box-shadow: 0 0 20px #c52b3a55;
+    animation: spinZoom 0.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
 }
 
+@keyframes spinZoom {
+    0% {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: rotate(360deg) scale(1.05);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Остальные стили без изменений */
 .clan-header {
     display: flex;
     align-items: center;
@@ -229,7 +280,34 @@ body {
     border-left: 5px solid #2f3542;
     transition: 0.2s;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: ruleFadeIn 0.5s forwards;
 }
+
+@keyframes ruleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Задержки для пунктов правил */
+.rule-item:nth-child(1) { animation-delay: 0.05s; }
+.rule-item:nth-child(2) { animation-delay: 0.1s; }
+.rule-item:nth-child(3) { animation-delay: 0.15s; }
+.rule-item:nth-child(4) { animation-delay: 0.2s; }
+.rule-item:nth-child(5) { animation-delay: 0.25s; }
+.rule-item:nth-child(6) { animation-delay: 0.3s; }
+.rule-item:nth-child(7) { animation-delay: 0.35s; }
+.rule-item:nth-child(8) { animation-delay: 0.4s; }
+.rule-item:nth-child(9) { animation-delay: 0.45s; }
+.rule-item:nth-child(10) { animation-delay: 0.5s; }
+.rule-item:nth-child(11) { animation-delay: 0.55s; }
+.rule-item:nth-child(12) { animation-delay: 0.6s; }
 
 .rule-item:hover {
     border-left-color: #c52b3a;
@@ -477,6 +555,7 @@ body.light-theme .footer-note {
         left: 0;
         bottom: 0;
         top: auto;
+        transform: none;
         width: 100%;
         height: auto;
         background: rgba(30, 34, 43, 0.98);
