@@ -16,13 +16,13 @@ body {
     padding-left: 80px; /* место для боковой панели */
 }
 
-/* ========== БОКОВАЯ ПАНЕЛЬ — ИЗМЕНЕНА ========== */
+/* ========== БОКОВАЯ ПАНЕЛЬ — ИСПРАВЛЕНА ========== */
 .side-nav {
     position: fixed;
     left: 0;
     top: 0;
     width: 70px;
-    height: 100vh;
+    height: auto;               /* высота по содержимому, пустоты нет */
     background: rgba(30, 34, 43, 0.95);
     backdrop-filter: blur(8px);
     border-right: 1px solid #2a2f3a;
@@ -32,13 +32,7 @@ body {
     overflow-x: hidden;
     white-space: nowrap;
     box-shadow: 2px 0 12px rgba(0,0,0,0.3);
-    /* центрирование содержимого по вертикали */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* закругление правого края (по желанию) */
-    border-radius: 0 20px 20px 0;
-    /* убираем лишние внутренние отступы */
+    border-radius: 0 20px 20px 0;  /* закругление правого края */
     padding: 0;
     margin: 0;
 }
@@ -49,7 +43,7 @@ body {
 
 .side-nav ul {
     list-style: none;
-    padding: 0;          /* убрал вертикальные отступы, которые создавали пустоту */
+    padding: 0;               /* убираем отступы, которые создавали пустоту */
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -498,9 +492,13 @@ body.light-theme .footer-note {
         padding: 8px 12px;
         box-shadow: 0 -2px 12px rgba(0,0,0,0.3);
         border-radius: 0; /* на мобилке убираем скругление */
-        /* сброс центрирования для мобильной версии */
-        justify-content: center;
-        align-items: center;
+        /* сброс позиционирования для мобильной версии */
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
     .side-nav:hover {
         width: auto;
