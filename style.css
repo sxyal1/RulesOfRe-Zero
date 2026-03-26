@@ -663,3 +663,99 @@ body.light-theme .footer-note {
         padding: 8px 12px;
     }
 }
+
+/* ========== ЗАСТАВКА (SPLASH) ========== */
+.splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #0a0815 0%, #03010a 100%);
+    /* Если у тебя есть фон Re:Zero, замени url */
+    background-image: url('https://imgur.com/a/WMfKUh5');
+    background-size: cover;
+    background-position: center;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+    opacity: 1;
+    animation: fadeOutSplash 2.5s forwards; /* заставка исчезнет через 2.5с */
+}
+
+/* Большой значок */
+.splash-icon {
+    width: 220px;
+    height: 220px;
+    background: rgba(30, 34, 43, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    font-weight: 800;
+    color: #c52b3a;
+    border: 4px solid #c52b3a;
+    box-shadow: 0 0 40px rgba(197, 43, 58, 0.6);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 10px rgba(255, 100, 100, 0.8);
+    animation: iconPulse 1s ease-out forwards;
+}
+
+/* Свет, пробегающий по буквам */
+.splash-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.9), 
+        transparent);
+    background-size: 200% 100%;
+    animation: lightSweep 1.2s ease-in-out forwards;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Анимация исчезновения заставки */
+@keyframes fadeOutSplash {
+    0% { opacity: 1; visibility: visible; }
+    70% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* Анимация света по буквам */
+@keyframes lightSweep {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Лёгкая пульсация значка */
+@keyframes iconPulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    40% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Основной контент изначально скрыт, появляется после заставки */
+.container {
+    animation: contentFadeIn 0.8s ease 2.2s forwards;
+    opacity: 0;
+}
+
+@keyframes contentFadeIn {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Чтобы боковая панель тоже не мешала во время заставки (опционально) */
+.side-nav {
+    z-index: 1500; /* ниже, чем заставка */
+}
