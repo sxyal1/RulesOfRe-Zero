@@ -4,7 +4,7 @@
     <link rel="icon" type="image/png" href="https://i.imgur.com/AZKwJBP.png‎">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заявка на модератора · Ruthless Elite Zero</title>
+    <title>Заявки · Ruthless Elite Zero</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800&display=swap" rel="stylesheet">
@@ -79,44 +79,49 @@
 <body>
     <div class="apply-page">
         <div class="apply-header">
-            <h1>Заявка на модератора</h1>
+            <h1 id="form-title">Заявка на модератора</h1>
             <p>𖤐Ruthless Elite Zero𖤐</p>
             <a href="rules.html" class="back-link"><i class="fas fa-arrow-left"></i> Назад к правилам</a>
         </div>
 
         <div class="form-container">
-            <p class="form-desc">Заполните форму, чтобы подать заявку на модератора. Все поля обязательны.</p>
+            <p class="form-desc" id="form-desc">Заполните форму, чтобы подать заявку.</p>
             <form id="mod-apply-form">
+                <input type="hidden" id="apply-role" value="moderator">
                 <div class="form-group">
-                    <label for="apply-nick">Ваш никнейм</label>
-                    <input type="text" id="apply-nick" required placeholder="Например: Player123">
-                    <div class="error-msg" id="nick-error">Никнейм должен содержать буквы и быть длиннее 2 символов</div>
+                    <label for="apply-nick">Ваше имя</label>
+                    <input type="text" id="apply-nick">
                 </div>
                 <div class="form-group">
                     <label for="apply-discord">Ваш Discord</label>
-                    <input type="text" id="apply-discord" required placeholder="Например: user0000">
+                    <input type="text" id="apply-discord">
                 </div>
                 <div class="form-group">
                     <label for="apply-age">Ваш возраст</label>
-                    <input type="number" id="apply-age" required placeholder="Например: 14" min="13">
+                    <input type="number" id="apply-age" min="13">
                 </div>
                 <div class="form-group">
-                    <label for="apply-exp">Опыт модерации</label>
-                    <select id="apply-exp" required>
-                        <option value="">— Выберите —</option>
-                        <option value="Нет опыта">Нет опыта</option>
-                        <option value="Менее 6 месяцев">Менее 6 месяцев</option>
-                        <option value="6–12 месяцев">6–12 месяцев</option>
-                        <option value="Более года">Более года</option>
-                    </select>
+                    <label>Был ли опыт?</label>
+                    <div class="exp-selector">
+                        <label class="exp-option selected" data-exp="yes">
+                            <input type="radio" name="apply-exp" value="Да" checked hidden>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Да</span>
+                        </label>
+                        <label class="exp-option" data-exp="no">
+                            <input type="radio" name="apply-exp" value="Нет" hidden>
+                            <i class="fas fa-times-circle"></i>
+                            <span>Нет</span>
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="apply-reason">Почему вы хотите стать модератором?</label>
-                    <textarea id="apply-reason" rows="4" required placeholder="Напишите пару предложений..."></textarea>
+                    <label for="apply-reason" id="reason-label">Почему вы хотите стать модератором?</label>
+                    <textarea id="apply-reason" rows="4"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="apply-extra">Дополнительная информация</label>
-                    <textarea id="apply-extra" rows="3" placeholder="Ваши сильные стороны, график активности и т.д."></textarea>
+                    <textarea id="apply-extra" rows="3"></textarea>
                 </div>
                 <button type="submit" class="form-submit" id="apply-submit-btn">
                     <i class="fas fa-paper-plane"></i> Отправить заявку
@@ -128,102 +133,71 @@
 
     <script>
         (function() {
-            const WEBHOOK_URL = 'https://discord.com/api/webhooks/1523395461057216593/Cv1oRkQJcj678TEGPfQgKuPsTHlSFEK4cCRCx8tJmao3aEOlzTt58yD469Jr9L4cXaKu';
+            const API_URL = 'https://ВАШ-БОТ.onrender.com/apply';
 
             const form = document.getElementById('mod-apply-form');
             const statusEl = document.getElementById('apply-status');
             const submitBtn = document.getElementById('apply-submit-btn');
+            const formTitle = document.getElementById('form-title');
+            const formDesc = document.getElementById('form-desc');
+            const reasonLabel = document.getElementById('reason-label');
 
-            function validateNick(nick) {
-                return nick.length > 2 && /[a-zA-Zа-яА-ЯёЁ]/.test(nick);
-            }
+            const roleLabels = {
+                moderator: { title: 'Заявка на модератора', desc: 'Заполните форму, чтобы подать заявку на модератора.', reason: 'Почему вы хотите стать модератором?', webhookTitle: 'Новая заявка на модератора' },
+                support: { title: 'Заявка в сапорт', desc: 'Заполните форму, чтобы подать заявку в сапорт.', reason: 'Почему вы хотите стать сапортом?', webhookTitle: 'Новая заявка в сапорт' },
+                curator: { title: 'Заявка на ассистента куратора', desc: 'Заполните форму, чтобы подать заявку на ассистента куратора.', reason: 'Почему вы хотите стать ассистентом куратора?', webhookTitle: 'Новая заявка на ассистента куратора' }
+            };
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const roleKey = urlParams.get('role') && roleLabels[urlParams.get('role')] ? urlParams.get('role') : 'moderator';
+            document.getElementById('apply-role').value = roleKey;
+            const roleInfo = roleLabels[roleKey];
+            formTitle.textContent = roleInfo.title;
+            formDesc.textContent = roleInfo.desc;
+            reasonLabel.textContent = roleInfo.reason;
+
+            document.querySelectorAll('.exp-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    document.querySelectorAll('.exp-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                });
+            });
 
             if (form) {
-                const nickInput = document.getElementById('apply-nick');
-                const nickError = document.getElementById('nick-error');
-
-                nickInput.addEventListener('input', () => {
-                    if (!validateNick(nickInput.value)) {
-                        nickInput.classList.add('error');
-                        nickError.style.display = 'block';
-                    } else {
-                        nickInput.classList.remove('error');
-                        nickError.style.display = 'none';
-                    }
-                });
-
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
-                    const nick = nickInput.value.trim();
-
-                    if (!validateNick(nick)) {
-                        nickInput.classList.add('error');
-                        nickError.style.display = 'block';
-                        nickInput.focus();
-                        return;
-                    }
-
+                    const nick = document.getElementById('apply-nick').value.trim();
                     const discord = document.getElementById('apply-discord').value.trim();
                     const age = document.getElementById('apply-age').value;
-                    const exp = document.getElementById('apply-exp').value;
+                    const expEl = document.querySelector('.exp-option.selected input');
+                    const exp = expEl ? expEl.value : '—';
                     const reason = document.getElementById('apply-reason').value.trim();
                     const extra = document.getElementById('apply-extra').value.trim();
-
-                    const embed = {
-                        embeds: [{
-                            title: 'Новая заявка на модератора',
-                            color: 0xc52b3a,
-                            fields: [
-                                { name: 'Никнейм', value: nick, inline: true },
-                                { name: 'Discord', value: discord, inline: true },
-                                { name: 'Возраст', value: age, inline: true },
-                                { name: 'Опыт модерации', value: exp, inline: true },
-                                { name: 'Почему хочет стать модератором?', value: reason || '—' },
-                                { name: 'Дополнительно', value: extra || '—' }
-                            ],
-                            footer: { text: 'Ruthless Elite Zero · Заявки' },
-                            timestamp: new Date().toISOString()
-                        }]
-                    };
 
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
                     statusEl.textContent = '';
 
                     try {
-                        const res = await fetch(WEBHOOK_URL, {
+                        const res = await fetch(API_URL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(embed)
+                            body: JSON.stringify({ role: roleKey, name: nick, discord, age, experience: exp, reason, extra })
                         });
-                        if (res.ok) {
+                        const data = await res.json();
+                        if (data.ok) {
                             statusEl.style.color = '#4ade80';
                             statusEl.textContent = 'Заявка отправлена! Администрация рассмотрит её в ближайшее время.';
                             form.reset();
-                            nickInput.classList.remove('error');
-                            nickError.style.display = 'none';
+                            document.querySelectorAll('.exp-option').forEach(o => o.classList.remove('selected'));
+                            document.querySelector('.exp-option[data-exp="yes"]').classList.add('selected');
                         } else {
-                            throw new Error('Ошибка сервера');
+                            throw new Error(data.error || 'Ошибка сервера');
                         }
                     } catch {
-                        const text = Object.entries({
-                            'Никнейм': nick,
-                            'Discord': discord,
-                            'Возраст': age,
-                            'Опыт': exp,
-                            'Почему': reason,
-                            'Дополнительно': extra
-                        }).map(([k, v]) => `**${k}:** ${v || '—'}`).join('\n');
-
-                        try {
-                            await navigator.clipboard.writeText(text);
-                            statusEl.style.color = '#fbbf24';
-                            statusEl.textContent = 'Не удалось отправить. Заявка скопирована в буфер — отправь админу вручную.';
-                        } catch {
-                            statusEl.style.color = '#f87171';
-                            statusEl.textContent = 'Ошибка отправки. Попробуй позже или напиши администратору.';
-                        }
+                        statusEl.style.color = '#f87171';
+                        statusEl.textContent = 'Ошибка отправки. Попробуй позже или напиши администратору.';
                     } finally {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
@@ -231,7 +205,6 @@
                 });
             }
 
-            // Тема
             const savedTheme = localStorage.getItem('rezero-theme');
             if (savedTheme === 'light') {
                 document.body.classList.add('light-theme');
