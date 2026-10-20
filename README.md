@@ -1,2 +1,2 @@
-# RulesOfRe-Zero
-RulesOfRe:Zero
+# RealMord
+RealMord
